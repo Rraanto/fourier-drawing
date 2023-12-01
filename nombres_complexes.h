@@ -2,6 +2,10 @@
 #define NOMBRES_COMPLEXES_H
 
 /*
+ * Fichier header contenant l'implémentation des nombres complexes
+ */
+
+/*
  * Définition du type complexe comme un couple d'entiers flottants (partie réelle et partie imaginaire)
  */
 struct complexe {
@@ -18,7 +22,24 @@ complexe operator * (const complexe &x, const complexe &y);
 
 complexe operator - (const complexe &x, const complexe &y);
 
+complexe operator / (const complexe &x, const complexe &y);
 
+// overloads pour l'addition des types mixtes
+complexe operator + (const float &x, const complexe &y);
+
+complexe operator + (const complexe &y, const float &x);
+
+complexe operator - (const complexe &x, const float &y);
+
+complexe operator - (const float &x, const complexe &y);
+
+complexe operator * (const float &x, const complexe &y);
+
+complexe operator * (const complexe &x, const float &y);
+
+complexe operator / (const complexe &x, const float &y);
+
+complexe operator / (const float &x, const complexe &y);
 /*
  * Fonctions de calcul sur les complexes 
  */

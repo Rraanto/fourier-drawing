@@ -22,6 +22,46 @@ complexe operator - (const complexe &x, const complexe &y) {
   return complexe(x.re - y.re, x.im-y.im);
 }
 
+complexe operator / (const complexe &x, const complexe &y) {
+  // calcul du denominateur et numerateur
+  float denom = pow(y.re, 2) + pow(y.im, 2);
+  complexe num = x * conj(y);
+  return complexe(num.re / denom, num.im / denom);
+} 
+
+// overloads pour l'addition des types mixtes
+complexe operator + (const float &x, const complexe &y) {
+  return complexe(x, 0) + y;
+}
+
+complexe operator + (const complexe &y, const float &x) {
+  return x * y;
+}
+
+complexe operator - (const complexe &x, const float &y) {
+  return x - complexe(y, 0);
+}
+
+complexe operator - (const float &x, const complexe &y) {
+  return complexe(x, 0) - y;
+}
+
+complexe operator * (const float &x, const complexe &y) {
+  return complexe(x, 0) * y;
+}
+
+complexe operator * (const complexe &x, const float &y) {
+  return x * complexe(y, 0);
+}
+
+complexe operator / (const complexe &x, const float &y) {
+  return x / complexe(y, 0);
+}
+
+complexe operator / (const float &x, const complexe &y) {
+  return complexe(x, 0) / y;
+}
+
 /*
  * Fonctions basiques sur les complexes
  */
