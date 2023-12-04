@@ -12,6 +12,7 @@
 #include "nombres_complexes.h"
 #include "utils.h"
 #include "image.h"
+#include "fourier.h"
 
 using namespace std;
 using std::vector;
@@ -52,6 +53,6 @@ int main(int argc, char **argv) {
 
   Mat img = imread(argv[1]);
   vector<complexe> signal = generer_signal(contour_plus_long(img));
-
-  cout << "Signal de taille " << signal.size() << "\n";
+  vector<complexe> transform = tdf(signal); // vecteur contenant les coefficients Xk
+                                            // de la transformee discrete
 }

@@ -2,10 +2,13 @@
 #define FOURIER_H
 
 #include "nombres_complexes.h"
+#include <vector>
+
+using std::vector;
 
 /*
- * Calcule une approximation par calcul numérique de l'intégrale d'une fonction donnée en argument
+ * Calcule la transformee de fourier discrete a partir d'un signal S
  */
-complexe integrer(float a, float b, complexe(*func)(float t));
+vector<complexe> tdf(vector<complexe> S);
 
 #endif
