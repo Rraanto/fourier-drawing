@@ -1,25 +1,26 @@
 #include <vector>
 #include <cmath>
+#include <complex>
 #include "fourier.h"
 #include "utils.h"
 
 using namespace std;
 using std::vector;
+using std::complex;
 
-vector <complexe> tdf(vector<complexe> S) {
-  vector<complexe> transform;
-
-  // variables locales
-  float angle;
-  int k, n;
+vector<complex<double>> tdf(vector<complex<double>> S, int NB_COEFFS) {
+  vector<complex<double>> res;
   int N = S.size();
-  for (k = 0; k < N; k++) {
-    complexe sum = complexe(0, 0);
-    for (n = 0; n < N; n++) {
-      angle = -2*M_PI*k*n/N;
-      sum = sum + (S[n] * complexe(cos(angle), sin(angle)));
+  int m = N/2;
+  int sup = NB_COEFFS/2;
+  for (int k = -sup; k < sup; k++) {
+    complex<double> z(0.0, 0.0); // somme
+    for (int n = -m; n < m; n++) {
+      complex<double> x = S[n + m]; // facteur de l'exp dans le coeff 
+      double angle = 2*k*M_PI*n/N;
+      z = z + x * complex<double>(cos(angle) / N, -sin(angle) / N);
     }
-    transform.push_back(sum);
+    res.push_back(z);
   }
-  return transform;
+  return res;
 }

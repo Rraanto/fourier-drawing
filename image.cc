@@ -25,13 +25,14 @@ vector<vector<Point>> contour_plus_long(Mat image) {
   flip(image, image, 0);
   cvtColor(image, image, COLOR_BGR2GRAY);
   threshold(image, image, 150, 255, THRESH_BINARY);
-  image = 255 - image; // inversion de l'image pour ne garder que les contours utiles (sans le bord, etc)
+
+  image = 255 - image;
 
   // trouver les contours
   vector<vector<Point>>contours;
   vector<Vec4i> hierarchy;
 
-  findContours(image, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
+  findContours(image, contours, hierarchy, RETR_TREE, CHAIN_APPROX_NONE);
   
   // trouver le contour le plus long
   int max_index, max_value = 0;

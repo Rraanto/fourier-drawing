@@ -1,14 +1,15 @@
 #ifndef FOURIER_H
 #define FOURIER_H
 
-#include "nombres_complexes.h"
 #include <vector>
+#include <complex>
 
 using std::vector;
+using std::complex;
 
 /*
  * Calcule la transformee de fourier discrete a partir d'un signal S
  */
-vector<complexe> tdf(vector<complexe> S);
+vector<complex<double>> tdf(vector<complex<double>> S, int NB_COEFFS);
 
 #endif
