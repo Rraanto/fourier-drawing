@@ -228,36 +228,38 @@ void display() {
     double right = 250.0;
     double top = 400;
 
+    void* font = GLUT_BITMAP_HELVETICA_18;
+
     char tmp[128]; // store the text
     snprintf(tmp, sizeof(tmp), "signal de depart contenant: %d points", signal.size());
-    printText(right, top, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(right, top, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "N = %d", nb_coeffs);
-    printText(left, top, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(left, top, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "r: activer rotation (%d)", is_rotating);
-    printText(left, top - gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(left, top - gap, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "j/k: ajouter/reduire coefficients");
-    printText(left, top - 2*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(left, top - 2*gap, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "o: afficher original (%d)", showOriginalImage);
-    printText(left, top - 3*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(left, top - 3*gap, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "t: afficher approximation (%d)", prePlotTrace);
-    printText(left, top - 4*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(left, top - 4*gap, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "v: afficher epicycles (%d)", showVectors);
-    printText(left, top - 5*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(left, top - 5*gap, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "s/f: ralentir/accelerer");
-    printText(right, top - gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(right, top - gap, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "FPS %d", 1000/TIMERSECS);
-    printText(right, top - 2*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(right, top - 2*gap, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "h: afficher/masquer aide");
-    printText(right, top - 3*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+    printText(right, top - 3*gap, font, tmp);
   }
   int len, i;
   
@@ -331,7 +333,7 @@ void keyboard(unsigned char key, int x, int y) {
 void myInit() {
   glClearColor(0.0, 0.0, 0.0, 1.0);
   glColor3f(1.0, 1.0, 1.0);
-  glPointSize(2.0);
+  glPointSize(1.0);
   glLineWidth(2);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
