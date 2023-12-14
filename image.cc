@@ -2,7 +2,6 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 
-#include "nombres_complexes.h"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -51,27 +50,3 @@ vector<vector<Point>> contour_plus_long(Mat image) {
   return res;
 }
 
-/* 
- * Genere le signal a traiter a partir d'un contour
- * TODO: "Projeter" le contour pour que le contour commence en 0, 0 avant la conversion en complexes
- */
-vector<complexe> generer_signal(vector<vector<Point>> contour) {
-  vector<complexe> res;
-  
-  // calcul du point le plus proche de l'origine (0, 0)
-  int min_x = contour[0][0].x;
-  int min_y = contour[0][0].y;
-
-  for (Point p: contour[0]) {
-    if (p.x <= min_x) min_x = p.x;
-    if (p.y <= min_y) min_y = p.y;
-  }
-  int i = 0;
-  for (Point p: contour[0]) {
-    complexe z = complexe(p.x - min_x, p.y - min_y);
-    res.push_back(z);
-    i++;
-  }
-
-  return res;
-}

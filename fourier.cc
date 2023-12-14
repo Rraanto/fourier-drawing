@@ -2,7 +2,6 @@
 #include <cmath>
 #include <complex>
 #include "fourier.h"
-#include "utils.h"
 
 using namespace std;
 using std::vector;
