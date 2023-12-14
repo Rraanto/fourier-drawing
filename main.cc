@@ -14,7 +14,6 @@
 #include "image.h"
 #include "fourier.h"
 
-#define TIMERSECS 5
 #define GAP 25 // espace entre les textes
 
 using namespace std;
@@ -32,6 +31,7 @@ int is_rotating = 0; // animate or not
 int showOriginalImage = 1;
 int prePlotTrace = 1; // plot the trace beforehand
 int showVectors = 0;
+int TIMERSECS = 5;
 
 /* 
  * Fonction trigonometrique obtenue associées aux coefficients dans signal
@@ -221,28 +221,38 @@ void display() {
   // affichage fonction
   glColor3f(0.0, 0.8, 0.6);
   
+  double gap = GAP;
+  double left = -250.0;
+  double right = 250.0;
+  double top = 400;
   char tmp[128]; // store the text
   snprintf(tmp, sizeof(tmp), "signal de depart contenant: %d points", signal.size());
-  printText(250.0, 300.0, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+  printText(right, top, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
 
   snprintf(tmp, sizeof(tmp), "N = %d", nb_coeffs);
-  printText(-250.0, 300.0, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+  printText(left, top, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
 
-  double gap = GAP;
   snprintf(tmp, sizeof(tmp), "r: activer rotation (%d)", is_rotating);
-  printText(-250.0, 300.0 + gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+  printText(left, top - gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
 
   snprintf(tmp, sizeof(tmp), "j/k: ajouter/reduire coefficients");
-  printText(-250.0, 300.0 + 2*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+  printText(left, top - 2*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
 
   snprintf(tmp, sizeof(tmp), "o: afficher original (%d)", showOriginalImage);
-  printText(-250.0, 300.0 + 3*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+  printText(left, top - 3*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
 
   snprintf(tmp, sizeof(tmp), "t: afficher approximation (%d)", prePlotTrace);
-  printText(-250.0, 300.0 + 4*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+  printText(left, top - 4*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
 
   snprintf(tmp, sizeof(tmp), "v: afficher epicycles (%d)", showVectors);
-  printText(-250.0, 300.0 + 5*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+  printText(left, top - 5*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+
+  snprintf(tmp, sizeof(tmp), "s/f: ralentir/accelerer");
+  printText(right, top - gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+
+  snprintf(tmp, sizeof(tmp), "FPS %d", 1000/TIMERSECS);
+  printText(right, top - 2*gap, GLUT_BITMAP_TIMES_ROMAN_24, tmp);
+
   int len, i;
   
   if (showVectors) {
@@ -294,6 +304,15 @@ void keyboard(unsigned char key, int x, int y) {
       showVectors = (showVectors)?0:1;
       glutPostRedisplay();
       break;
+    case 'f': // fasten
+      if (TIMERSECS - 100 <= 0) TIMERSECS = 1;
+      else TIMERSECS = TIMERSECS - 5;
+      glutPostRedisplay();
+      break;
+    case 's': // fasten animation 
+      TIMERSECS = TIMERSECS + 5;
+      break;
+
     case 27:
       exit(0);
       break;
