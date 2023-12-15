@@ -156,14 +156,14 @@ void renderVectors(double t) {
     glColor3f(0.0,(color_scale)*255, 255.0);
     drawLine(x_origin, y_origin, x_to, y_to);
 
+    glBegin(GL_POINTS);
+    glVertex2f(x_to, y_to);
+    glEnd();
+
     x_origin = x_to;
     y_origin = y_to;
   }
 
-  // plot the trace 
-  glBegin(GL_POINTS);
-  glVertex2f(x_to, y_to);
-  glEnd();
 }
 
 void drawLine(double x_from, double y_from, double x_to, double y_to) {
@@ -333,7 +333,7 @@ void keyboard(unsigned char key, int x, int y) {
 void myInit() {
   glClearColor(0.0, 0.0, 0.0, 1.0);
   glColor3f(1.0, 1.0, 1.0);
-  glPointSize(1.0);
+  glPointSize(1.5);
   glLineWidth(2);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
