@@ -255,7 +255,7 @@ void display() {
     snprintf(tmp, sizeof(tmp), "s/f: ralentir/accelerer");
     printText(right, top - gap, font, tmp);
 
-    snprintf(tmp, sizeof(tmp), "FPS %d", 1000/TIMERSECS);
+    snprintf(tmp, sizeof(tmp), "RPS %d", 1000/TIMERSECS);
     printText(right, top - 2*gap, font, tmp);
 
     snprintf(tmp, sizeof(tmp), "h: afficher/masquer aide");
