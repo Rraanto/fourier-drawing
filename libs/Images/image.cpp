@@ -1,16 +1,16 @@
 #include <iostream>
-#include <vector>
 #include <opencv2/opencv.hpp>
+#include <vector>
 
 #include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 
 using namespace cv;
 using std::vector;
 
-/* 
- * module image 
+/*
+ * module image
  * Permet l'obtention du signal a traiter a partir d'un fichier image
  */
 
@@ -28,25 +28,26 @@ vector<vector<Point>> contour_plus_long(Mat image) {
   image = 255 - image;
 
   // trouver les contours
-  vector<vector<Point>>contours;
+  vector<vector<Point>> contours;
   vector<Vec4i> hierarchy;
 
-  findContours(image, contours, hierarchy, RETR_TREE, CHAIN_APPROX_NONE);
-  
+  // to simulate noisy data
+  findContours(image, contours, hierarchy, RETR_EXTERNAL,
+               CHAIN_APPROX_TC89_KCOS);
+
   // trouver le contour le plus long
   int max_index, max_value = 0;
   i = 0;
-  for (vector<Point> contour: contours) {
+  for (vector<Point> contour : contours) {
     if (contour.size() >= max_value) {
       max_value = contour.size();
       max_index = i;
     }
     i++;
   }
-  
+
   vector<Point> tmp(contours[max_index]);
   vector<vector<Point>> res = {tmp};
 
   return res;
 }
-
