@@ -1,4 +1,6 @@
-Animation illustrating [Fourier Fast Transform](https://fr.wikipedia.org/wiki/Transformation_de_Fourier_discr%C3%A8te) on contours from images interpreted as complex (2D) signals.
+Started as a mere illustration of [Fourier Fast Transform](https://fr.wikipedia.org/wiki/Transformation_de_Fourier_discr%C3%A8te) inspired by [3blue1Brown](https://www.3blue1brown.com/). 
+
+This may evolve more towards a DFT-based contour or region reconstruction from noisy data. 
 
 ## Dependencies 
 Building and compilation
