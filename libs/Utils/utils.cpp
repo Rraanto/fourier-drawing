@@ -28,7 +28,7 @@ computePoints(const vector<complex<double>> &signal,
 
   // subdivisions du temps
   int subdivisions_temps =
-      1000; // influe uniquement la résolution de la courbe estimée
+      10000; // influe uniquement la résolution de la courbe estimée
   double delta = 2.0 * M_PI / (double)subdivisions_temps;
   for (int i = 0; i < subdivisions_temps; i++) {
     double t = i * delta;
